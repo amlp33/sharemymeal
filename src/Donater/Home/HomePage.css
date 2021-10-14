@@ -1,0 +1,20 @@
+.home_page_main_container{
+    position: relative;
+    width:100%;
+    height:fit-content;
+    /* background-image: url(//unsplash.it/1200/1000); */
+    color:blue;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.hometest{
+    font-size:30px;
+    height: 100%;
+    width:50%;
+    background: yellow;
+}

@@ -1,0 +1,207 @@
+.navbar_main_container{
+    position: sticky;
+    top:0;
+    width:100%;
+    height:70px;
+    background-color: #1b62a5;
+    color: white;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    flex-direction:row;
+    font-size: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.navbar_text{
+    padding:12px 20px 12px 20px;
+    cursor: pointer;
+    color: white !important;
+    margin-left: 6px;
+    cursor: pointer;
+    
+}
+
+.navbar_donate{
+    margin-right: 8px;
+    border:1px solid whitesmoke ;
+    border-radius: 3px;
+
+}
+
+.navbar_logo{
+    position: absolute;
+    left:20px;
+    cursor: pointer;
+
+}
+
+.navbar_text:hover{
+    border-radius: 3px;
+    background-color:#2d76b9 ;
+}
+/* .active{
+    background-color:#606f7c ;
+    border:1px solid #bda47b;
+} */
+
+
+
+
+
+.login_modal_title{
+    /* background-color: blue; */
+}
+
+
+.login_modal_grid{
+    padding-top: 20px;
+    width:400px;
+    display: grid;
+   grid-template-columns: auto;
+   row-gap: 20px;
+    
+
+}
+
+
+
+.login_modal_action_container{
+
+    height:90px !important;
+    padding-bottom: 20px !important;
+}
+.donate_modal_checkbox{
+    position: absolute;
+    bottom:100px;
+    left:28px;
+    font-size: 12px;
+    color: #606f7c;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login_modal_submit_button{
+    position: absolute;
+    top:10px;
+    height:40px ;
+    width:90%;
+    right:5%;
+    /* background-color:#1b62a5 !important; */
+    
+}
+
+.join_us_submit_button{
+    position: absolute;
+    bottom:10px;
+    height:40px ;
+    width:93%;
+    right:3.5%; 
+}
+/* margin for meal quantity drop down in donate card */
+ .css-1869usk-MuiFormControl-root{
+    width:100% !important;
+    margin:0 !important;
+}
+
+
+/* .join_us_modal_main_container{
+    height:800px;
+}
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+    height:800px;
+} */
+
+.join_us_grid{
+    position: relative;
+    display: grid;
+    row-gap: 15px;
+    grid-template-columns: auto;
+    /* overflow: hidden !important; */
+
+}
+
+
+    .join_us_modal_title{
+        background-color: rgb(196, 235, 196);
+    }
+
+    .join_us_modal_text{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:20px 20px 0px 20px;
+    }
+
+
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+ 
+/* Track */
+::-webkit-scrollbar-track {
+display: none;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: rgb(205, 209, 211); 
+    -webkit-box-shadow: inset 0 0 6px rgba(151, 144, 144, 0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(232, 238, 252, 0.4); 
+}
+
+
+
+
+
+
+/* 
+
+.bootstrap_navbar_link{
+    position: relative;
+    left:40px !important;
+    border: 1px solid black;
+    display: grid !important;
+    grid-template-columns:auto auto auto auto  ;
+    column-gap: 20px;
+
+
+
+}
+.navbar_collapse{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.bootstrap_nav_links{
+    padding:20px ;
+}
+
+.bootstrap_nav_links:hover{
+    background: whitesmoke;
+}
+
+@media screen and (max-width: 1000px) {
+    .bootstrap_navbar_link{
+        right:0px;
+    }
+    .navbar_collapse{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+} */

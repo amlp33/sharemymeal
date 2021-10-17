@@ -13,8 +13,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import * as Constants from "../../Constants"
 // import {Navbar, Nav, NavDropdown , Container} from 'react-bootstrap'
-
+import { NavLink } from "react-router-dom";
 
 export class Navbarr extends Component {
     
@@ -84,9 +85,12 @@ export class Navbarr extends Component {
 
             <div className="navbar_main_container">
             <span className="navbar_logo" >Logo</span>
-            <Link style={{color:"white"}} href="/" underline="none"> <span className= "navbar_home navbar_text"> Home</span></Link>
-            <Link style={{color:"white"}} href="/about_us" underline="none"> <span  className="navbar_about_us navbar_text">
-            About us</span></Link>
+            <NavLink to={Constants.HOME_LINK} >
+            <span className= "navbar_home navbar_text"> Home</span>
+            </NavLink>
+
+            <NavLink  to={Constants.ABOUT_US_LINK}> <span  className="navbar_about_us navbar_text">
+            About us</span></NavLink>
   
             <span className="navbar_join_us navbar_text" onClick={this.handleJoinUsModalOpen}>Join us</span>
             <span onClick={this.handleLoginModalOpen} className="navbar_donate navbar_text">Donate</span>

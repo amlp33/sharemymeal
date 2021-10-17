@@ -1,0 +1,113 @@
+.a_navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:70px;
+    background-color:#673fac;
+    color: white;
+    padding-right:7px ;
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;    
+}
+
+.a_navbar_logo{
+    position:absolute;
+    left:0px;
+}
+.a_navbar_logo:hover{
+    background-color:transparent !important;
+}
+
+.a_navbar_text{
+    padding:13px 20px 13px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.a_navbar_text:hover{
+    background-color: #7b5db8;
+
+}
+
+
+/* Modal CSS   for Login */
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+    min-width:95% ;
+}
+
+
+.a_login_modal_content{
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 15px;
+    padding-top: 10px !important;
+    padding-bottom:0 !important;
+}
+
+.a_login_modal_action_container{
+    display: grid !important;
+    grid-template-columns: 100% !important;
+    padding:0px 20px 15px 20px !important;
+    row-gap: 10px;
+}
+
+.a_login_modal_forgot_password{
+    display: flex;
+    justify-content: flex-end;
+    padding:10px 10px 5px 0px;
+    color:gray;
+    font-size: 1.9vh;
+}
+
+.a_login_modal_sign_up{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #9f90be;
+    font-size: 2vh;
+}
+
+
+/* Modal CSS for Sign up  */
+
+.a_signup_modal_content_container{
+    display: grid;
+    grid-template-columns: auto !important;
+    row-gap: 13px;
+    padding-top: 10px !important;
+
+}
+
+
+.a_signup_modal_action_container{
+    display: grid !important;
+    grid-template-columns: 100% !important;
+    row-gap: 12px;
+    padding:10px 22px 15px 22px !important;
+    /* background: blue; */
+}
+
+.a_signup_modal_login_text{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 10px;
+    font-size: 2vh;
+    color:#9e8bc5 ;
+}
+
+
+@media screen and (min-width:500px){
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+        min-width:400px ;
+        
+    }
+
+}
+
+/* Modal CSS Over */

@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
-import AdminNavbar from '../AdminNavbar/AdminNavbar'
+import "../AdminMainPage/AdminMainPage.css"
+import AdminNavbar from '../AdminNavbar/AdminNavbar';
 
 export class AdminMainPage extends Component {
     render() {
         return (
-            <div>
+            <>
+            <AdminNavbar />
+            <div className="admin_main_page_main_container">
+                <div className="admin_main_page_sub_container">
                 This is the main page
+
+                </div>
             </div>
+            </>
         )
     }
 }

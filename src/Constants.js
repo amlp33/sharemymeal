@@ -6,5 +6,6 @@ export const ABOUT_US_LINK = "/about_us";
 
 // Admin Links 
 
-export const ADMIN_MAIN_PAGE_LINK = "/admin_main"
-export const ADMIN_ROUTING_LINK = "/admin_routing"
+export const ADMIN_MAIN_PAGE_LINK = "/admin/admin_main"
+export const ADMIN_ROUTING_LINK = "/admin"
+export const ADMIN_DATASTORE_LINK = "/admin/admin_datastore"

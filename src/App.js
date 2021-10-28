@@ -8,6 +8,7 @@ import HomePage from "./Donater/Home/HomePage";
 import AdminMainPage from "./Admin/AdminMainPage/AdminMainPage";
 import DonaterMainPage from "./Donater/DonaterMainPage/DonaterMainPage";
 import AdminRouting from "./Admin/AdminRouting/AdminRouting";
+import AdminDatastore from "./Admin/AdminDatastore/AdminDatastore";
 function App() {
   return (
     <div>

@@ -2,46 +2,96 @@
     position: sticky;
     top:0;
     width:100%;
-    height:70px;
+    height:fit-content;
     background-color: #1b62a5;
     color: white;
     display: flex;
-    justify-content:flex-end;
-    align-items: center;
-    flex-direction:row;
+    align-items: flex-start;
+    flex-direction:column;
     font-size: 18px;
     font-family: 'JetBrains Mono', monospace;
     overflow: hidden;
     z-index: 999;
 }
 
+.navbar_links{
+    display:none;
+    width:100%;
+}
+.navbar_links ul{
+
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction: column;
+    /* background-color: blue; */
+    margin-top:0px;
+    width:100%;
+
+}
+
+.navbar_links li{
+    list-style: none;
+    width:100%;
+    padding:1rem;
+    text-align: center;
+    /* background-color: yellow; */
+    /* align-items: center;
+    justify-content: center; */
+    /* padding:12px 20px 12px 20px; */
+}
+
+.navbar_links li:hover{
+    background-color: #2d76b9;
+ 
+}
+
+.navbar_hamburger_icon{
+    position:absolute;
+    right:0;
+    padding:15px 20px 20px 20px ;
+}
+
+.navbar_hamburger_icon:hover{
+    background-color:transparent;
+}
+
+
+.navbar_links.active{
+    transition: all 0.5s ease;
+    display:flex;
+}
+
+
 .navbar_text{
-    padding:12px 20px 12px 20px;
-    cursor: pointer;
     color: white !important;
-    margin-left: 6px;
     cursor: pointer;
-    
 }
 
 .navbar_donate{
-    margin-right: 8px;
-    border:1px solid whitesmoke ;
-    border-radius: 3px;
 
+
+    /* padding:1rem; */
 }
 
 .navbar_logo{
-    position: absolute;
-    left:20px;
+    position: relative;
+    left:25px;
     cursor: pointer;
 
 }
 
-.navbar_text:hover{
+.logo{
+    margin-top: 5px;
+    margin-left: 5px;
+    width:140px;
+    height:60px;
+}
+
+/* .navbar_text:hover{
     border-radius: 3px;
     background-color:#2d76b9 ;
-}
+} */
 /* .active{
     background-color:#606f7c ;
     border:1px solid #bda47b;
@@ -58,7 +108,7 @@
 
 .login_modal_grid{
     padding-top: 20px;
-    width:400px;
+    /* width:400px; */
     display: grid;
    grid-template-columns: auto;
    row-gap: 20px;
@@ -102,6 +152,8 @@
     height:40px ;
     width:93%;
     right:3.5%; 
+    margin-top: 5px !important;
+    margin-bottom:15px !important;
 }
 /* margin for meal quantity drop down in donate card */
  .css-1869usk-MuiFormControl-root{
@@ -202,3 +254,62 @@ display: none;
     }
 
 } */
+
+
+
+@media screen and (min-width:650px){
+
+.navbar_main_container{
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    flex-direction:row;
+}
+
+.navbar_logo{
+    position: absolute;
+    left:0;
+}
+
+.navbar_hamburger_icon{
+    display: none;
+}
+.navbar_links{
+    display:flex;
+    width:400px;
+    /* background-color: pink; */
+    align-items: center;
+    justify-content: flex-end;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+.navbar_links ul{
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction: row;
+    padding-right: 10px;
+    width:initial;
+
+
+}
+
+.navbar_links li{
+    list-style: none;
+    width:70%;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.navbar_links li:hover{
+    background-color: #2d76b9;
+    border-radius: 4px;
+
+}
+
+}
+    
+
+

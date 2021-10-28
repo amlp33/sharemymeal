@@ -1,0 +1,163 @@
+.admin_datastore_main_container{
+   position:relative;
+   width:100%;
+   overflow: hidden;
+    height: 94vh;
+   /* width:100%;  */
+
+}
+
+.admin_datastore_navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:70px;
+    background-color: #673fac;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    color: white;
+    font-size: 15px;
+    font-family: 'JetBrains Mono', monospace;
+    padding-right:15px;
+    padding-left: 10px;
+
+}
+
+/* Profile DropDown */
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
+    width:130px !important;
+}
+
+
+
+
+.admin_datastore_container{
+    position:relative;
+    width:100%;
+    /* margin-top: 70px; */
+    overflow: hidden;
+}
+
+
+.admin_datastore_grid_container{
+    position:relative;
+    height:100%;
+    /* top:70px; */
+    width:100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 20px;
+    top:90px;
+    padding-bottom: 100px;
+  
+    
+}
+
+
+.admin_datastore_volunteer_data{
+    height:600px;
+    width:95%;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    margin-left: 30px;
+    overflow:hidden ;
+
+}
+
+.admin_datastore_donater_data{
+    height:600px;
+    width:95%;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    overflow: hidden;
+
+}
+
+.admin_datastore_volunteer_heading{
+    position: relative;
+    height:35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    background-color: #cef3bf;
+    color:black ;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+}
+
+.admin_datastore_donater_heading{
+    position: relative;
+    height:35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    background-color: #bfdef3;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
+}
+
+
+.admin_datastore_volunteer_sub_data{
+    position: relative;
+    width:100%;
+    height:93%;
+    overflow: scroll;
+}
+
+
+
+
+.admin_datastore_donater_sub_data{
+    position: relative;
+    width:100%;
+    height:90%;
+    overflow: scroll;
+}
+
+.admin_data_store_volunteer_inside_sub{
+    position: relative;
+    width:97%;
+    height:fit-content;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    row-gap: 20px;
+    padding-top:10px;
+    padding-left: 10px;
+    padding-left: 10px;
+
+}
+
+
+/*  Actual DATA  */
+
+
+.admin_datastore_actual_data{
+    width:100%;
+    height:70px;
+    border-radius: 5px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: rgba(111, 111, 145, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+
+
+.available{
+    background-color: #618833 !important;
+    padding-left:27px !important;
+    padding-right:27px !important;
+
+}
+.unavailable{
+    background-color: #b2102f  !important;
+}
+
+

@@ -8,6 +8,8 @@ import DialogContent from '@mui/material/DialogContent';
 import TextField from '@mui/material/TextField';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import image from "../../testLogo2.png";
+
 export class AdminNavbar extends Component {
   constructor(props){
       super(props);
@@ -49,7 +51,7 @@ export class AdminNavbar extends Component {
     render() {
         return (
             <div className="a_navbar">
-                <span className="a_navbar_logo a_navbar_text">(sharemymeal)Admin</span>
+                <span className="a_navbar_logo a_navbar_text"><img src={image} alt="some example image" className="logo" /></span>
                 <span className="a_navbar_text">Home</span>
                 <span className="a_navbar_text" onClick={this.handleAdminLoginModalOpen}>Login/Signup</span>
 

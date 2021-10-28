@@ -13,7 +13,8 @@ export class DonaterMainPage extends Component {
             <Router >
                 <Navbarr />
                     <Switch>
-                    <Route path={Constants.DONATER_MAIN_PAGE_LINK}  exact > <Redirect to={Constants.HOME_LINK}/ >
+                    <Route path={Constants.DONATER_MAIN_PAGE_LINK}  exact > 
+                      <Redirect to={Constants.HOME_LINK} />
                     </Route>
                     <Route path={Constants.HOME_LINK}  component={HomePage} />
                     <Route path={Constants.ABOUT_US_LINK}  component={AboutUs} />

@@ -11,7 +11,8 @@
     flex-direction:row;
     justify-content: flex-end;
     align-items: center;
-    font-family: 'JetBrains Mono', monospace;    
+    font-family: 'JetBrains Mono', monospace;   
+    z-index: 999; 
 }
 
 .a_navbar_logo{
@@ -100,6 +101,12 @@
     font-size: 2vh;
     color:#9e8bc5 ;
 }
+
+
+
+
+
+
 
 
 @media screen and (min-width:500px){

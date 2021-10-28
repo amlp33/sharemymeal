@@ -16,6 +16,10 @@ import Select from '@mui/material/Select';
 import * as Constants from "../../Constants"
 // import {Navbar, Nav, NavDropdown , Container} from 'react-bootstrap'
 import { NavLink } from "react-router-dom";
+import  {GiHamburgerMenu}  from "react-icons/gi";
+import image from "../../testLogo.JPEG";
+
+
 
 export class Navbarr extends Component {
     
@@ -24,6 +28,7 @@ export class Navbarr extends Component {
         this.state = {
             isLoginModalOpen:false,
             isJoinUsModalOpen:false,
+            isHamburgerClicked:false,
         //   isNavbarHomeActive: true,
         //   isNavBarAboutUsActive:false,
         //   isNavBarJoinUsActive:false,
@@ -63,6 +68,14 @@ export class Navbarr extends Component {
             isJoinUsModalOpen:false,
         })
     }
+
+
+    handleHamburgerClick = () => {
+      this.setState({
+        isHamburgerClicked:!this.state.isHamburgerClicked,
+      })
+    }
+
     // handleNavbarLink(a , b ,c ,d ) {
     //     this.setState({ isNavbarHomeActive: a ,
     //                     isNavBarAboutUsActive:b,
@@ -84,16 +97,38 @@ export class Navbarr extends Component {
 
 
             <div className="navbar_main_container">
-            <span className="navbar_logo" >Logo</span>
-            <NavLink to={Constants.HOME_LINK} >
-            <span className= "navbar_home navbar_text"> Home</span>
-            </NavLink>
 
-            <NavLink  to={Constants.ABOUT_US_LINK}> <span  className="navbar_about_us navbar_text">
-            About us</span></NavLink>
-  
-            <span className="navbar_join_us navbar_text" onClick={this.handleJoinUsModalOpen}>Join us</span>
-            <span onClick={this.handleLoginModalOpen} className="navbar_donate navbar_text">Donate</span>
+            <span className="navbar_logo" >        <img src={image} alt="some example image" className="logo" />
+</span>
+            <GiHamburgerMenu className="navbar_hamburger_icon" size="30" onClick={this.handleHamburgerClick} />
+          <div className={this.state.isHamburgerClicked ? "navbar_links active" : "navbar_links" }>
+           <ul>   
+           <NavLink to={Constants.HOME_LINK} className="navLink" style={{ textDecoration: 'none' }} onClick={this.handleHamburgerClick} > <li>      
+              
+              <span className= "navbar_home navbar_text" > Home</span>
+              
+            </li></NavLink>
+
+            <NavLink  to={Constants.ABOUT_US_LINK} style={{ textDecoration: 'none' }} onClick={this.handleHamburgerClick} ><li>
+               <span  className="navbar_about_us navbar_text">
+              About us</span>
+             
+            </li> </NavLink>
+
+            <li onClick={() =>{this.handleJoinUsModalOpen(); this.handleHamburgerClick()}}>
+              <span className="navbar_join_us navbar_text" >Join us
+              </span>
+            </li>
+
+            <li onClick={() => {this.handleLoginModalOpen() ; this.handleHamburgerClick()}}>
+              <span  className="navbar_donate navbar_text">Donate
+              </span>
+            </li>
+
+           </ul>
+           </div>
+
+           
             </div>
 
 
@@ -163,7 +198,7 @@ export class Navbarr extends Component {
           <TextField size="medium"  id="outlined-basic" label="Age" variant="outlined" />
           <TextField size="medium"  id="outlined-basic" label="locality" variant="outlined" />
           <TextField size="medium"  id="outlined-basic" label="city" variant="outlined" />
-          <TextField size="medium"  id="outlined-basic" label="why you want to join us" variant="outlined" />
+
 
 
 

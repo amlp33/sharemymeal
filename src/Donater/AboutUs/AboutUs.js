@@ -6,7 +6,7 @@ export class AboutUs extends Component {
             <div className="about_us_page_main_container">
                 <div className="testaboutus">
 
-                    abouttttttt us
+                  about us 
                 </div>
             </div>
         )

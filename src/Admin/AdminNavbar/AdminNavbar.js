@@ -95,7 +95,8 @@ export class AdminNavbar extends Component {
                     Sign up
                     </DialogTitle>
                     <DialogContent className="a_signup_modal_content_container">
-                    <TextField id="outlined-basic" label="Name" variant="outlined" />
+                    <TextField id="outlined-basic" label="first name" variant="outlined" />
+                    <TextField id="outlined-basic" label="last name" variant="outlined" />
                     <TextField id="outlined-basic" label="email" variant="outlined" />
                     <TextField id="outlined-basic" label="phone number" variant="outlined" />
                     <TextField id="outlined-basic" label="city" variant="outlined" />

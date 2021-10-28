@@ -144,7 +144,8 @@ export class Navbarr extends Component {
         </DialogTitle>
         <DialogContent>
               <div className="login_modal_grid">
-          <TextField  label="full name" />
+          <TextField  label="first name" />
+          <TextField  label="last name" />
           <TextField id="outlined-basic" label="mobile number" variant="outlined" />
           <TextField id="outlined-basic" label="food pickup address" variant="outlined" />
           <TextField id="outlined-basic" label="city" variant="outlined" />
@@ -193,7 +194,8 @@ export class Navbarr extends Component {
           </DialogContentText>
           <DialogContent className="join_us_grid">
 
-          <TextField size="medium" id="outlined-basic" label="name" variant="outlined" />
+          <TextField size="medium" id="outlined-basic" label="first name" variant="outlined" />
+          <TextField size="medium"  id="outlined-basic" label="last name" variant="outlined" />
           <TextField size="medium"  id="outlined-basic" label="mobile number" variant="outlined" />
           <TextField size="medium"  id="outlined-basic" label="Age" variant="outlined" />
           <TextField size="medium"  id="outlined-basic" label="locality" variant="outlined" />

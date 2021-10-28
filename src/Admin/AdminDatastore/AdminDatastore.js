@@ -58,7 +58,7 @@ export class AdminDatastore extends Component {
                             <div className="admin_data_store_volunteer_inside_sub"> 
 
                              <div className="admin_datastore_actual_data">
-                                <span> Ravi  </span>in <span>Pune </span>  near <span>Kharadi </span>
+                                <span> Rahul  </span>in <span>Pune </span>  near <span>Kharadi </span>
                                 <Button  className="datastore_button available" variant="contained">Available</Button>
                              </div>
 
@@ -74,6 +74,25 @@ export class AdminDatastore extends Component {
                                 <span> Avinash  </span>in <span>Pune </span>  near <span>Kothrud </span>
                                 <Button  className="datastore_button unavailable" variant="contained">Unavailable</Button>
                              </div>
+                             <div className="admin_datastore_actual_data">
+                                <span> Avinash  </span>in <span>Pune </span>  near <span>Kothrud </span>
+                                <Button  className="datastore_button unavailable" variant="contained">Unavailable</Button>
+                             </div>
+                             <div className="admin_datastore_actual_data">
+                                <span> Himanshu  </span>in <span>Pune </span>  near <span>Yerwada </span>
+                                <Button  className="datastore_button available" variant="contained">Available</Button>
+                             </div>
+
+                               <div className="admin_datastore_actual_data">
+                                <span> Himanshu  </span>in <span>Pune </span>  near <span>Yerwada </span>
+                                <Button  className="datastore_button available" variant="contained">Available</Button>
+                             </div>
+
+                             
+                               <div className="admin_datastore_actual_data">
+                                <span> Himanshu  </span>in <span>Pune </span>  near <span>Yerwada </span>
+                                <Button  className="datastore_button available" variant="contained">Available</Button>
+                             </div> 
 
                              </div> 
 

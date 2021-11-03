@@ -29,17 +29,31 @@ export class Navbarr extends Component {
             isLoginModalOpen:false,
             isJoinUsModalOpen:false,
             isHamburgerClicked:false,
-        //   isNavbarHomeActive: true,
-        //   isNavBarAboutUsActive:false,
-        //   isNavBarJoinUsActive:false,
-        //   isNavBarLoginActive:false,
-
-
-
+            donaterFirstName:"",
+            donaterLastName:"",
+            donaterMobileNumber:"",
+            donaterAddress:"",
+            donaterCity:"",
+            donaterMealQuantity:"",
+            donaterArray:{
+              donaterFirstName:this.donaterFirstName,
+              donaterLastname:this.donaterLastName,
+              donaterMobileNumbere:this.donaterMobileNumber,
+              donaterAddress:this.donaterAddress,
+              donaterCity:this.donaterCity,
+              donaterMealQuantity:this.donaterMealQuantity
+            }
+ 
 
         };
+
+        this.handleDonaterRequest = this.handleDonaterRequest.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     
     }
+
+
+  
 
     handleLoginModalOpen = () =>{
         this.setState({
@@ -76,19 +90,44 @@ export class Navbarr extends Component {
       })
     }
 
-    // handleNavbarLink(a , b ,c ,d ) {
-    //     this.setState({ isNavbarHomeActive: a ,
-    //                     isNavBarAboutUsActive:b,
-    //                     isNavBarJoinUsActive:c,
-    //                     isNavBarLoginActive:d 
-    //                 },
-    //                 console.log(this.state.isNavBarAboutUsActive)
-    //                 );
+    handleChange = ({ target }) =>{
+      this.setState({
+        [target.name]: target.value
+      });
+    }
 
-    //   }
-    
-    
 
+    handleDonaterRequest = (e) => {
+      e.preventDefault();
+
+      // const donaterArray = [this.state.donaterFirstName , this.state.donaterLastName ,this.state.donaterMobileNumber,
+      //                   this.state.donaterAddress, this.state.donaterCity,this.state.donaterMealQuantity]
+
+
+                        
+      this.setState({
+        isLoginModalOpen:false,
+    }) 
+
+
+    const donaterArray = {
+      donaterFirstName:this.state.donaterFirstName,
+      donaterLastName:this.state.donaterLastName,
+      donaterMobileNumber:this.state.donaterMobileNumber,
+      donaterAddress:this.state.donaterAddress,
+      donaterCity:this.state.donaterCity,
+      donaterMealQuantity:this.state.donaterMealQuantity
+    }
+
+    fetch("http://localhost:8080/donater/donationRequest" , {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(donaterArray)
+    }).then(()=> {
+      console.log("Donater Request Added ( successfully )")
+    })
+      console.log(this.state.donaterMobileNumber);
+    }
 
 
 
@@ -98,35 +137,33 @@ export class Navbarr extends Component {
 
             <div className="navbar_main_container">
 
-            <span className="navbar_logo" >        <img src={image} alt="some example image" className="logo" />
-</span>
-            <GiHamburgerMenu className="navbar_hamburger_icon" size="30" onClick={this.handleHamburgerClick} />
-          <div className={this.state.isHamburgerClicked ? "navbar_links active" : "navbar_links" }>
-           <ul>   
-           <NavLink to={Constants.HOME_LINK} className="navLink" style={{ textDecoration: 'none' }} onClick={this.handleHamburgerClick} > <li>      
-              
-              <span className= "navbar_home navbar_text" > Home</span>
-              
-            </li></NavLink>
+                <span className="navbar_logo" >       
+                 <img src={image} alt="some example image" className="logo" />
+                </span>
+                <GiHamburgerMenu className="navbar_hamburger_icon" size="30" onClick={this.handleHamburgerClick} />
+              <div className={this.state.isHamburgerClicked ? "navbar_links active" : "navbar_links" }>
+                  <ul>   
+                  <NavLink to={Constants.HOME_LINK} className="navLink" style={{ textDecoration: 'none' }} onClick={this.handleHamburgerClick} > <li>      
+                      <span className= "navbar_home navbar_text" > Home</span>
+                    </li></NavLink>
 
-            <NavLink  to={Constants.ABOUT_US_LINK} style={{ textDecoration: 'none' }} onClick={this.handleHamburgerClick} ><li>
-               <span  className="navbar_about_us navbar_text">
-              About us</span>
-             
-            </li> </NavLink>
+                    <NavLink  to={Constants.ABOUT_US_LINK} style={{ textDecoration: 'none' }} onClick={this.handleHamburgerClick} ><li>
+                      <span  className="navbar_about_us navbar_text">
+                      About us</span>
+                    </li> </NavLink>
 
-            <li onClick={() =>{this.handleJoinUsModalOpen(); this.handleHamburgerClick()}}>
-              <span className="navbar_join_us navbar_text" >Join us
-              </span>
-            </li>
+                    <li onClick={() =>{this.handleJoinUsModalOpen(); this.handleHamburgerClick()}}>
+                      <span className="navbar_join_us navbar_text" >Join us
+                      </span>
+                    </li>
 
-            <li onClick={() => {this.handleLoginModalOpen() ; this.handleHamburgerClick()}}>
-              <span  className="navbar_donate navbar_text">Donate
-              </span>
-            </li>
+                    <li onClick={() => {this.handleLoginModalOpen() ; this.handleHamburgerClick()}}>
+                      <span  className="navbar_donate navbar_text">Donate
+                      </span>
+                    </li>
 
-           </ul>
-           </div>
+                  </ul>
+              </div>
 
            
             </div>
@@ -139,16 +176,18 @@ export class Navbarr extends Component {
         onClose={this.handleLoginModalClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title" className="login_modal_title">
+        <DialogTitle id="responsive-dialog-title" className="donater_modal_title">
             Donate 
         </DialogTitle>
         <DialogContent>
-              <div className="login_modal_grid">
-          <TextField  label="first name" />
-          <TextField  label="last name" />
-          <TextField id="outlined-basic" label="mobile number" variant="outlined" />
-          <TextField id="outlined-basic" label="food pickup address" variant="outlined" />
-          <TextField id="outlined-basic" label="city" variant="outlined" />
+              <div className="donater_modal_grid">
+
+
+          <TextField  label="first name" name="donaterFirstName" value={this.state.donaterFirstName}  onChange={this.handleChange}/>
+          <TextField  label="last name" name="donaterLastName" value={this.state.donaterLastName} onChange={this.handleChange}/>
+          <TextField id="outlined-basic" label="mobile number" variant="outlined" name="donaterMobileNumber"  value={this.state.donaterMobileNumber} onChange={this.handleChange}/>
+          <TextField id="outlined-basic" label="food pickup address" variant="outlined" name="donaterAddress" value={this.state.donaterAddress} onChange={this.handleChange}/>
+          <TextField id="outlined-basic" label="city" variant="outlined" name="donaterCity" value={this.state.donaterCity} onChange={this.handleChange} />
 
 
           <FormControl sx={{ m: 1, minWidth: 120 }} className="">
@@ -158,8 +197,11 @@ export class Navbarr extends Component {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           label="meal quantity"
+          name="donaterMealQuantity"
+          defaultValue = ""
+          value={this.state.donaterMealQuantity}
+          onChange={this.handleChange}
         >
-          
           <MenuItem value={20}>20</MenuItem>
           <MenuItem value={50}>50</MenuItem>
           <MenuItem value={100}>100</MenuItem>
@@ -170,11 +212,11 @@ export class Navbarr extends Component {
             </div>
 
         </DialogContent>
-        <DialogActions className="login_modal_action_container">
+        <DialogActions className="donater_modal_action_container">
         <span className="donate_modal_checkbox" > 
          <input type="checkbox" id="donate_modal_checkbox"/> 
          <label  htmlFor="donate_modal_checkbox" style={{cursor:"pointer" , paddingLeft:"5px"}}>I assure the quality of food is safe for consumption</label> </span>
-          <Button variant="contained" className="login_modal_submit_button" onClick={this.handleLoginModalClose} autoFocus>
+          <Button variant="contained" className="donater_modal_submit_button" onClick={this.handleDonaterRequest} autoFocus>
             Submit
           </Button>
         </DialogActions>

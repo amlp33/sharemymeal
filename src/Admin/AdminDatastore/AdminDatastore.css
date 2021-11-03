@@ -2,7 +2,7 @@
    position:relative;
    width:100%;
    overflow: hidden;
-    height: 94vh;
+    height: 93.89vh;
    /* width:100%;  */
 
 }
@@ -49,7 +49,7 @@
     /* top:70px; */
     width:100%;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     column-gap: 20px;
     top:90px;
     padding-bottom: 100px;
@@ -63,8 +63,8 @@
     width:95%;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
-    margin-left: 30px;
-    overflow:hidden ;
+    margin-left: 20px;
+    overflow:hidden;
 
 }
 
@@ -113,13 +113,27 @@
 
 
 
-.admin_datastore_donater_sub_data{
+.admin_data_store_donater_sub_data{
     position: relative;
     width:100%;
-    height:90%;
+    height:93%;
     overflow: scroll;
 }
 
+
+/* .admin_data_store_donater_sub{
+    position: relative;
+    width:100%;
+    height:fit-content;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    row-gap: 20px;
+    padding-top:10px;
+    padding-left: 0px;
+    padding-bottom: 10px; 
+    overflow:scroll;
+} */
 .admin_data_store_volunteer_inside_sub{
     position: relative;
     width:97%;
@@ -130,23 +144,54 @@
     row-gap: 20px;
     padding-top:10px;
     padding-left: 10px;
-    padding-left: 10px;
+    padding-bottom: 10px;
 
 }
 
+.admin_data_store_donater_inside_sub{
+    position: relative;
+    width:97%;
+    height:fit-content;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    row-gap: 20px;
+    padding-top:10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    overflow: scroll;
+ 
+}
 
 /*  Actual DATA  */
 
 
 .admin_datastore_actual_data{
-    width:100%;
-    height:70px;
+    width:96%;
+    height:fit-content;
+    padding:10px;
     border-radius: 5px;
     display:flex;
     justify-content: space-around;
     align-items: center;
     box-shadow: rgba(111, 111, 145, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
+
+.admin_donater_datastore_actual_data{
+    width:96%;
+    height:fit-content;
+    padding:10px;
+    padding-top:20px;
+    border-radius: 5px;
+    display:grid;
+    grid-template-columns: auto auto 22%;
+    /* grid-template-rows: 10% auto; */
+    column-gap: 10px;
+    row-gap: 15px;
+    align-items: center;
+    box-shadow: rgba(111, 111, 145, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
 
 
 
@@ -160,4 +205,57 @@
     background-color: #b2102f  !important;
 }
 
+
+
+
+
+
+.admin_datastore_donater_address{
+    padding:4px;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    background-color: rgb(248, 231, 247);
+    height:100%;
+
+}
+
+.donater_request_id{
+    background-color: whitesmoke;
+    padding:5px;
+    border-radius: 5px;
+    height:100%;
+
+}
+
+
+.donater_name{
+    background-color: rgb(235, 252, 251);
+    padding:5px;
+    border-radius: 5px; 
+    height:100%;
+
+}
+
+.donater_mobile_number{
+    background-color: rgb(245, 252, 235);
+    padding:5px;
+    border-radius: 5px; 
+    height:100%;
+
+}
+
+.donater_city{
+    background-color: rgb(242, 235, 252);
+    padding:5px;
+    border-radius: 5px;
+    height:100%;
+}
+
+.donater_meal_quantity{
+    background-color: rgb(252, 240, 235);
+    padding:5px;
+    border-radius: 5px; 
+    height:100%;
+ 
+}
 

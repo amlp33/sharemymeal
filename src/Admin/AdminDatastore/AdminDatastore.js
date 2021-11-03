@@ -13,6 +13,7 @@ export class AdminDatastore extends Component {
             anchorEl: null,
             setanchorEl: null,
             open: false,
+            allDonationRequests:[],
         };
     
     }
@@ -31,6 +32,23 @@ export class AdminDatastore extends Component {
         })
     }
 
+
+   async componentDidMount() {
+       const url = "http://localhost:8080/donater/allDonationRequests";
+        const response = await fetch(url);
+        this.setState({
+           allDonationRequests : await response.json(),
+
+        })
+         console.log(this.state.allDonationRequests);
+        // .then(res=>res.json())
+        // .then((result)=>{
+        //     this.setState({
+        //         allDonationRequestion:result,
+        //     });
+        // }
+        // )
+    }
 
 
     render() {
@@ -105,10 +123,30 @@ export class AdminDatastore extends Component {
 
                       <div className="admin_datastore_donater_data">
                       <div className="admin_datastore_donater_heading">Food pickup requests </div>
-                      <div className="admin_datastore_donater_sub_data">
+                      <div className="admin_data_store_donater_sub_data">
+                          <div className="admin_data_store_donater_inside_sub">
 
+                        {this.state.allDonationRequests.map(donations =>(
+                        
+                        <div className="admin_donater_datastore_actual_data" key={donations.donaterId}>
+                        <span className="donater_request_id"><b> Request Id :</b><br/> {donations.donaterId}  </span>
+                        <span className="donater_name"><b>Name : </b><br/>{donations.donaterFirstName} &nbsp; {donations.donaterLastName} </span>
+                       
+                          <span className="donater_mobile_number"><b>Mobile No :</b><br/>{donations.donaterMobileNumber} </span>
+                          <span  className="admin_datastore_donater_address" ><b>Food pickup address:</b><br/>  
+                          {donations.donaterAddress}
+                          {/* This will have some address 
+                          This will have some address 
+                          This will have some address  */}
+                          </span>
+                          <span className="donater_city"><b>City :</b> <br/>{donations.donaterCity}</span>
+                          <span className="donater_meal_quantity"><b>Meal Quantity :</b><br/> {donations.donaterMealQuantity}</span>
 
-                     </div>
+                      <br /><br/></div> ))
+                        
+                        }
+
+                     </div></div>
  
                       </div>
                     </div>    

@@ -101,12 +101,12 @@
 
 
 
-.login_modal_title{
+.donater_modal_title{
     /* background-color: blue; */
 }
 
 
-.login_modal_grid{
+.donater_modal_grid{
     padding-top: 20px;
     /* width:400px; */
     display: grid;
@@ -118,7 +118,7 @@
 
 
 
-.login_modal_action_container{
+.donater_modal_action_container{
 
     height:90px !important;
     padding-bottom: 20px !important;
@@ -136,7 +136,7 @@
 }
 
 
-.login_modal_submit_button{
+.donater_modal_submit_button{
     position: absolute;
     top:10px;
     height:40px ;

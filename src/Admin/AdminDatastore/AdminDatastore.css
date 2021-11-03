@@ -49,7 +49,7 @@
     /* top:70px; */
     width:100%;
     display: grid;
-    grid-template-columns: 65% 35%;
+    grid-template-columns: 60% 40%;
     column-gap: 10px;
     top:90px;
     padding-bottom: 100px;

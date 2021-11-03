@@ -159,7 +159,6 @@
     padding-top:10px;
     padding-left: 10px;
     padding-bottom: 10px;
-    overflow: scroll;
  
 }
 
@@ -258,4 +257,22 @@
     height:100%;
  
 }
+
+
+@media screen and (max-height: 750px) {
+    .admin_datastore_volunteer_data{
+        height:500px;
+      
+    
+    }
+    
+    .admin_datastore_donater_data{
+        height:500px;
+      
+    
+    } 
+
+
+}
+
 

@@ -133,16 +133,17 @@ export class AdminDatastore extends Component {
                         <span className="donater_name"><b>Name : </b><br/>{donations.donaterFirstName} &nbsp; {donations.donaterLastName} </span>
                        
                           <span className="donater_mobile_number"><b>Mobile No :</b><br/>{donations.donaterMobileNumber} </span>
-                          <span  className="admin_datastore_donater_address" ><b>Food pickup address:</b><br/>  
+                          <span  className="admin_datastore_donater_address" ><b style={{fontSize:"13px"}}>Food pickup address:</b><br/>  
                           {donations.donaterAddress}
-                          {/* This will have some address 
                           This will have some address 
-                          This will have some address  */}
+                          This will have some address 
+                          This will have some address 
                           </span>
                           <span className="donater_city"><b>City :</b> <br/>{donations.donaterCity}</span>
-                          <span className="donater_meal_quantity"><b>Meal Quantity :</b><br/> {donations.donaterMealQuantity}</span>
+                          <span className="donater_meal_quantity"><b >Meal Quantity :</b><br/> {donations.donaterMealQuantity}</span>
+                          <Button variant="contained" className="admin_datastore_donation_request_done_button" >  Mark as done or cancel</Button>
 
-                      <br /><br/></div> ))
+                </div> ))
                         
                         }
 

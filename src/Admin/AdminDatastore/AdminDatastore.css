@@ -49,8 +49,8 @@
     /* top:70px; */
     width:100%;
     display: grid;
-    grid-template-columns: 50% 50%;
-    column-gap: 20px;
+    grid-template-columns: 65% 35%;
+    column-gap: 10px;
     top:90px;
     padding-bottom: 100px;
   
@@ -63,7 +63,7 @@
     width:95%;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
-    margin-left: 20px;
+    margin-left: 10px;
     overflow:hidden;
 
 }
@@ -71,6 +71,7 @@
 .admin_datastore_donater_data{
     height:600px;
     width:95%;
+    margin-right: 40px;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
     overflow: hidden;
@@ -179,18 +180,22 @@
 }
 
 .admin_donater_datastore_actual_data{
-    width:96%;
     height:fit-content;
     padding:10px;
     padding-top:20px;
     border-radius: 5px;
     display:grid;
-    grid-template-columns: auto auto 22%;
-    /* grid-template-rows: 10% auto; */
+    grid-template-columns: auto 25% 30%;
+    grid-template-rows:auto;
+    /* grid-auto-rows: auto; */
     column-gap: 10px;
     row-gap: 15px;
     align-items: center;
     box-shadow: rgba(111, 111, 145, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    grid-template-areas:
+    "id name number" 
+    "address city quantity"
+    "button button button";
 }
 
 
@@ -217,6 +222,7 @@
     border-radius: 5px;
     background-color: rgb(248, 231, 247);
     height:100%;
+    grid-area:address;
 
 }
 
@@ -225,6 +231,7 @@
     padding:5px;
     border-radius: 5px;
     height:100%;
+    grid-area:id;
 
 }
 
@@ -234,6 +241,7 @@
     padding:5px;
     border-radius: 5px; 
     height:100%;
+    grid-area:name;
 
 }
 
@@ -242,6 +250,7 @@
     padding:5px;
     border-radius: 5px; 
     height:100%;
+    grid-area:number;
 
 }
 
@@ -249,19 +258,30 @@
     background-color: rgb(242, 235, 252);
     padding:5px;
     border-radius: 5px;
-    height:100%;
+    height:40%;
+    grid-area:city;
 }
 
 .donater_meal_quantity{
+    position: relative;
     background-color: rgb(252, 240, 235);
     padding:5px;
     border-radius: 5px; 
-    height:100%;
+    height:40%;
+    grid-area:quantity;
+
  
 }
 
+.admin_datastore_donation_request_done_button{
+    width:100% !important;
+    grid-area: button;
+    background-color: #673fac !important;
+    
+}
 
-@media screen and (max-height: 750px) {
+
+@media screen and (max-height: 700px) {
     .admin_datastore_volunteer_data{
         height:480px;
     }
@@ -274,7 +294,7 @@
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
     .admin_datastore_volunteer_sub_data{
         overflow-x: scroll;
     }

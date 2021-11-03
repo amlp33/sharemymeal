@@ -263,11 +263,11 @@
 
 @media screen and (max-height: 750px) {
     .admin_datastore_volunteer_data{
-        height:500px;
+        height:480px;
     }
     
     .admin_datastore_donater_data{
-        height:500px;
+        height:480px;
     } 
 
 

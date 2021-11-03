@@ -108,6 +108,7 @@
     width:100%;
     height:93%;
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 
@@ -118,6 +119,7 @@
     width:100%;
     height:93%;
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 
@@ -262,17 +264,25 @@
 @media screen and (max-height: 750px) {
     .admin_datastore_volunteer_data{
         height:500px;
-      
-    
     }
     
     .admin_datastore_donater_data{
         height:500px;
-      
-    
     } 
 
 
+}
+
+
+@media screen and (max-width: 900px) {
+    .admin_datastore_volunteer_sub_data{
+        overflow-x: scroll;
+    }
+    
+    
+    .admin_data_store_donater_sub_data{
+        overflow-x: scroll;
+    } 
 }
 
 

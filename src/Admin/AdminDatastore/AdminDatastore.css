@@ -276,7 +276,7 @@
 .admin_datastore_donation_request_done_button{
     width:100% !important;
     grid-area: button;
-    background-color: #673fac !important;
+    /* background-color: #d7f8c8 !important; */
     
 }
 

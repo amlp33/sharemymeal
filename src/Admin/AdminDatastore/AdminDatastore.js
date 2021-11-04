@@ -6,7 +6,16 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import image from "../../testLogo2.png";
 import axios from 'axios';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+
+
 export class AdminDatastore extends Component {
+
 
     constructor(props) {
         super(props);
@@ -15,7 +24,11 @@ export class AdminDatastore extends Component {
             setanchorEl: null,
             open: false,
             allDonationRequests:[],
+            allVolunteers:[],
             deleteDonationRequestResponse:null,
+            isVolunteerInfoModalOpen:false,
+            volunteerById:{},
+            deleteVolunteerConfirmationModalOpen:false,
         };
     
     }
@@ -34,14 +47,47 @@ export class AdminDatastore extends Component {
         })
     }
 
+    handleVolunteerModalOpen = () =>{
+        this.setState({
+            isVolunteerInfoModalOpen:true,
+        })
+    }
+
+    handleVolunteerModalClose = () =>{
+        this.setState({
+            isVolunteerInfoModalOpen:false,
+        })
+    }
+
+    handleDeleteVolunteerConfirmationOpen = () =>{
+        this.setState({
+            deleteVolunteerConfirmationModalOpen:true,
+        })
+    }
+
+    handleVolunteerConfirmationModalClose= () =>{
+        this.setState({
+            deleteVolunteerConfirmationModalOpen:false,
+        })
+    }
+
 
      componentDidMount() {
      this.fetchAllDonationRequest();
+     this.fetchAllVolunteers();
      }
 
 
-      componentDidUpdate(){
-      this.fetchAllDonationRequest();
+      componentDidUpdate(prevProps , prevState){
+        //   if(prevState.allDonationRequests != this.state.allDonationRequests){
+        //     this.fetchAllDonationRequest();
+        //   }
+          if(prevState.allVolunteers != this.state.allVolunteers){
+            this.fetchAllVolunteers();
+          }
+
+        // this.getVolunteerById();
+        
       }
 
 
@@ -52,17 +98,47 @@ export class AdminDatastore extends Component {
       }
 
 
+  
+      deleteInactiveVolunteer=(v_id)=>{
+        axios.delete(`http://localhost:8080/admin/deleteInactiveVolunteer/${v_id}`).then(res=>{
+          console.log(res.data)
+        })
+      }      
+
+
+
+
+   async getVolunteerById(e){
+        const url = "http://localhost:8080/admin/getVolunteerById/"+e;
+        const response = await fetch(url);
+        this.setState({
+            volunteerById : await response.json(),
+
+         })
+         console.log(this.state.volunteerById);
+      }
+
+
+
+
       async fetchAllDonationRequest(){
-    const url = "http://localhost:8080/admin/allDonationRequests";
-    const response = await fetch(url);
-    this.setState({
-       allDonationRequests : await response.json(),
+        const url = "http://localhost:8080/admin/allDonationRequests";
+        const response = await fetch(url);
+        this.setState({
+        allDonationRequests : await response.json(),
 
-    })
-     console.log(this.state.allDonationRequests);
-
+         })
+         console.log(this.state.allDonationRequests);
       }
   
+
+      async fetchAllVolunteers(){
+          const url = "http://localhost:8080/admin/getAllVolunteers";
+          const response = await fetch(url);
+          this.setState({
+            allVolunteers:await response.json(),
+          })
+      }
     
 
 
@@ -91,42 +167,70 @@ export class AdminDatastore extends Component {
                             <div className="admin_datastore_volunteer_sub_data">
                             <div className="admin_data_store_volunteer_inside_sub"> 
 
-                             <div className="admin_datastore_actual_data">
-                                <span> Rahul  </span>in <span>Pune </span>  near <span>Kharadi </span>
-                                <Button  className="datastore_button available" variant="contained">Available</Button>
-                             </div>
+                           { this.state.allVolunteers.map(volunteers => (
+                                <div className="admin_datastore_actual_data" key={volunteers.v_id}>
+                                <span> {volunteers.v_firstName}<br />{volunteers.v_lastName}  </span>in <span>{volunteers.v_city} </span>  near <span>{volunteers.v_address} </span>
+                                <Button className="datastore_button" variant="contained" value={volunteers.v_id} onClick={(e)=>{this.handleVolunteerModalOpen(); this.getVolunteerById(volunteers.v_id)}}> View more</Button>
+                        
 
-                             <div className="admin_datastore_actual_data">
-                                <span> Yash  </span>in <span>Pune </span>  near <span>Sinhagad </span>
-                                <Button  className="datastore_button unavailable" variant="contained">Unavailable</Button>
-                             </div>
-                             <div className="admin_datastore_actual_data">
-                                <span> Himanshu  </span>in <span>Pune </span>  near <span>Yerwada </span>
-                                <Button  className="datastore_button available" variant="contained">Available</Button>
-                             </div>
-                             <div className="admin_datastore_actual_data">
-                                <span> Avinash  </span>in <span>Pune </span>  near <span>Kothrud </span>
-                                <Button  className="datastore_button unavailable" variant="contained">Unavailable</Button>
-                             </div>
-                             <div className="admin_datastore_actual_data">
-                                <span> Avinash  </span>in <span>Pune </span>  near <span>Kothrud </span>
-                                <Button  className="datastore_button unavailable" variant="contained">Unavailable</Button>
-                             </div>
-                             <div className="admin_datastore_actual_data">
-                                <span> Himanshu  </span>in <span>Pune </span>  near <span>Yerwada </span>
-                                <Button  className="datastore_button available" variant="contained">Available</Button>
-                             </div>
 
-                               <div className="admin_datastore_actual_data">
-                                <span> Himanshu  </span>in <span>Pune </span>  near <span>Yerwada </span>
-                                <Button  className="datastore_button available" variant="contained">Available</Button>
-                             </div>
 
-                             
-                               <div className="admin_datastore_actual_data">
-                                <span> Himanshu  </span>in <span>Pune </span>  near <span>Yerwada </span>
-                                <Button  className="datastore_button available" variant="contained">Available</Button>
-                             </div> 
+                            </div>
+                            ))}
+                           
+
+                         
+
+                         
+
+                           <Dialog
+                                        open={this.state.isVolunteerInfoModalOpen}
+                                        keepMounted
+                                        onClose={this.handleVolunteerModalClose}
+                                        aria-describedby="alert-dialog-slide-description"
+                                        >   
+                                          {/* {this.state.volunteerById.map(vById => ( */}
+                                        <DialogTitle>Info about
+                                             {/* {Object.key(volunteerById).map(vById => (
+                                             <div>
+                                                 {vById.v_id}
+                                                  </div>))}  */}
+
+
+                                                   &nbsp; {this.state.volunteerById.v_firstName}&nbsp;{this.state.volunteerById.v_lastName}  
+
+                                             </DialogTitle>
+                                        <DialogContent>
+                                        <DialogContentText id="alert-dialog-slide-description">
+                                        <b>Mobile number : </b>{this.state.volunteerById.v_mobileNumber}&nbsp;&nbsp;&nbsp;<b>City : </b>{this.state.volunteerById.v_city}
+                                            <br /><b>currently in : </b>&nbsp;{this.state.volunteerById.v_address}&nbsp;&nbsp;&nbsp;<b>Age : </b>{this.state.volunteerById.v_age}&nbsp;& counting
+                                        </DialogContentText>
+                                        </DialogContent>
+                                        <DialogActions>
+                                        <Button onClick={this.handleVolunteerModalClose} variant="contained" color="success"> UPDATE</Button>
+                                        <Button onClick={this.handleVolunteerModalClose} variant="contained" color="error" onClick={()=>{ this.handleVolunteerModalClose(); this.handleDeleteVolunteerConfirmationOpen();}}> DELETE</Button>
+                                         
+                                        </DialogActions>
+                                    
+                                        </Dialog>
+
+
+
+                            <Dialog 
+                            open={this.state.deleteVolunteerConfirmationModalOpen}
+                            keepMounted
+                            onClose={this.handleDeleteVolunteerConfirmationClose}
+                            >
+                               <DialogTitle>
+                                You sure you want to delete :   
+                                </DialogTitle> 
+                                  <DialogActions >
+                                    <Button variant="contained" color="error" onClick={()=>{this.deleteInactiveVolunteer(this.state.volunteerById.v_id); this.handleVolunteerConfirmationModalClose();}}>YEP DELETE</Button> 
+                                    <Button variant="contained" onClick={this.handleVolunteerConfirmationModalClose}>Nope</Button>
+                                    </DialogActions>             
+                            </Dialog>                                                      
+            
+                                    
 
                              </div> 
 

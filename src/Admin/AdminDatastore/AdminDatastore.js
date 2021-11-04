@@ -5,6 +5,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import image from "../../testLogo2.png";
+import axios from 'axios';
 export class AdminDatastore extends Component {
 
     constructor(props) {
@@ -14,6 +15,7 @@ export class AdminDatastore extends Component {
             setanchorEl: null,
             open: false,
             allDonationRequests:[],
+            deleteDonationRequestResponse:null,
         };
     
     }
@@ -33,22 +35,36 @@ export class AdminDatastore extends Component {
     }
 
 
-   async componentDidMount() {
-       const url = "http://localhost:8080/donater/allDonationRequests";
-        const response = await fetch(url);
-        this.setState({
-           allDonationRequests : await response.json(),
+     componentDidMount() {
+     this.fetchAllDonationRequest();
+     }
 
+
+      componentDidUpdate(){
+      this.fetchAllDonationRequest();
+      }
+
+
+      deleteDonationRequest=(donationId)=>{
+        axios.delete(`http://localhost:8080/admin/deleteDonation/${donationId}`).then(res=>{
+          console.log(res.data)
         })
-         console.log(this.state.allDonationRequests);
-        // .then(res=>res.json())
-        // .then((result)=>{
-        //     this.setState({
-        //         allDonationRequestion:result,
-        //     });
-        // }
-        // )
-    }
+      }
+
+
+      async fetchAllDonationRequest(){
+    const url = "http://localhost:8080/admin/allDonationRequests";
+    const response = await fetch(url);
+    this.setState({
+       allDonationRequests : await response.json(),
+
+    })
+     console.log(this.state.allDonationRequests);
+
+      }
+  
+    
+
 
 
     render() {
@@ -141,7 +157,7 @@ export class AdminDatastore extends Component {
                           </span>
                           <span className="donater_city"><b>City :</b> <br/>{donations.donaterCity}</span>
                           <span className="donater_meal_quantity"><b >Meal Quantity :</b><br/> {donations.donaterMealQuantity}</span>
-                          <Button variant="contained" className="admin_datastore_donation_request_done_button" >  Mark as done or cancel</Button>
+                          <Button variant="contained" className="admin_datastore_donation_request_done_button" onClick={() =>{this.deleteDonationRequest(donations.donaterId);}}>  picked up or canceled</Button>
 
                 </div> ))
                         

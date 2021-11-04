@@ -119,7 +119,7 @@ export class Navbarr extends Component {
       donaterMealQuantity:this.state.donaterMealQuantity
     }
 
-    fetch("http://localhost:8080/donater/donationRequest" , {
+    fetch("http://localhost:8080/admin/donationRequest" , {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(donaterArray)

@@ -281,6 +281,14 @@
 }
 
 
+.volunteer_update_delete_grid{
+    display:grid;
+    grid-template-columns: 45% auto ;
+    row-gap: 15px;
+}
+
+
+
 @media screen and (max-height: 700px) {
     .admin_datastore_volunteer_data{
         height:480px;

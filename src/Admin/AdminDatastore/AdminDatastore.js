@@ -11,8 +11,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
-
+import TextField from '@mui/material/TextField';
 
 export class AdminDatastore extends Component {
 
@@ -29,8 +28,18 @@ export class AdminDatastore extends Component {
             isVolunteerInfoModalOpen:false,
             volunteerById:{},
             deleteVolunteerConfirmationModalOpen:false,
-        };
+            v_mobileNumber:"",
+            v_address:"",
+            v_city:"",
+            volunteerUpdateModalOpen:false,
+          };
     
+
+
+
+        this.getVolunteerById = this.getVolunteerById.bind(this);
+        this.handleVolunteerOnChange = this.handleVolunteerOnChange.bind(this);
+
     }
 
     handleProfileDropDownOpen = (event) =>{
@@ -51,6 +60,18 @@ export class AdminDatastore extends Component {
         this.setState({
             isVolunteerInfoModalOpen:true,
         })
+        
+
+    }
+
+    handleVolunteerOnChange(e,v){
+      // const target = event.target
+      // const name = target.name
+      
+      this.setState({
+        [e.target.name]: v
+      });
+      // console.log([e.target.])
     }
 
     handleVolunteerModalClose = () =>{
@@ -72,24 +93,42 @@ export class AdminDatastore extends Component {
     }
 
 
-     componentDidMount() {
-     this.fetchAllDonationRequest();
-     this.fetchAllVolunteers();
+    handleVolunteerUpdateModalOpen = () =>{
+      this.setState({
+        v_city:null,v_mobileNumber:null,v_address:null,
+        volunteerUpdateModalOpen:true,
+      })
+    }
+
+
+    handleVolunteerUpdateModalClose = () =>{
+      this.setState({
+        volunteerUpdateModalOpen:false,
+      })
+    }
+
+
+handleChange = ({target}) =>{
+  this.setState({
+    [target.name]:target.value
+  })
+}
+
+
+     componentDidMount(){
+      this.fetchAllDonationRequest();
+      this.fetchAllVolunteers();      
      }
 
 
-      componentDidUpdate(prevProps , prevState){
-        //   if(prevState.allDonationRequests != this.state.allDonationRequests){
-        //     this.fetchAllDonationRequest();
-        //   }
-          if(prevState.allVolunteers != this.state.allVolunteers){
+      componentDidUpdate(prevState , nextState){
+
+            // this.fetchAllDonationRequest();
+  
             this.fetchAllVolunteers();
-          }
-
-        // this.getVolunteerById();
         
-      }
 
+      }
 
       deleteDonationRequest=(donationId)=>{
         axios.delete(`http://localhost:8080/admin/deleteDonation/${donationId}`).then(res=>{
@@ -105,29 +144,59 @@ export class AdminDatastore extends Component {
         })
       }      
 
+    
+      updateVolunteer = (v_id) => {
+        const data = {
+          v_address:this.state.v_address,
+          v_city:this.state.v_city,
+          v_mobileNumber:this.state.v_mobileNumber
+        }
+        axios.put(`http://localhost:8080/admin/update/${v_id}`,data).then(response =>{
+          console.log(response.data)
+        })
+        console.log(v_id)
+
+      }
 
 
 
-   async getVolunteerById(e){
-        const url = "http://localhost:8080/admin/getVolunteerById/"+e;
-        const response = await fetch(url);
-        this.setState({
-            volunteerById : await response.json(),
+     getVolunteerById(e){
+         axios.get(`http://localhost:8080/admin/getVolunteerById/${e}`).then(response =>{
+          console.log(this.state.volunteerById);
 
+           this.setState({
+             volunteerById:response.data,
+             vArray:response.data,
+           },
+           console.log(this.state.volunteerById),
+
+
+           )
          })
-         console.log(this.state.volunteerById);
+         console.log(this.state.volunteerById)
+
       }
 
 
 
 
-      async fetchAllDonationRequest(){
+        fetchAllDonationRequest(){
         const url = "http://localhost:8080/admin/allDonationRequests";
-        const response = await fetch(url);
+        // const response = await fetch(url);
+       
+       axios.get(`http://localhost:8080/admin/allDonationRequests`).then(response => {
         this.setState({
-        allDonationRequests : await response.json(),
+          allDonationRequests :  response.data,
+  
+           }) 
+       })
+       
+        
 
-         })
+
+
+
+
          console.log(this.state.allDonationRequests);
       }
   
@@ -138,12 +207,24 @@ export class AdminDatastore extends Component {
           this.setState({
             allVolunteers:await response.json(),
           })
+          // await this.getVolunteerById(this.state.allVolunteers[0].v_id);
+
+
       }
     
 
 
 
+
+      
+    
+
     render() {
+
+
+
+
+
         return (
             <>
             <div className="admin_datastore_navbar">
@@ -170,67 +251,110 @@ export class AdminDatastore extends Component {
                            { this.state.allVolunteers.map(volunteers => (
                                 <div className="admin_datastore_actual_data" key={volunteers.v_id}>
                                 <span> {volunteers.v_firstName}<br />{volunteers.v_lastName}  </span>in <span>{volunteers.v_city} </span>  near <span>{volunteers.v_address} </span>
-                                <Button className="datastore_button" variant="contained" value={volunteers.v_id} onClick={(e)=>{this.handleVolunteerModalOpen(); this.getVolunteerById(volunteers.v_id)}}> View more</Button>
-                        
-
-
-
+                                <Button className="datastore_button" variant="contained" onClick={()=>{this.handleVolunteerModalOpen();this.getVolunteerById(volunteers.v_id) }} > View more</Button>
                             </div>
                             ))}
                            
+                           
+                           {/* {() => {if(this.state.volunteerById != null) return <> */}
 
-                         
-
-                         
-
-                           <Dialog
+                                        <Dialog
                                         open={this.state.isVolunteerInfoModalOpen}
                                         keepMounted
                                         onClose={this.handleVolunteerModalClose}
                                         aria-describedby="alert-dialog-slide-description"
                                         >   
-                                          {/* {this.state.volunteerById.map(vById => ( */}
                                         <DialogTitle>Info about
-                                             {/* {Object.key(volunteerById).map(vById => (
-                                             <div>
-                                                 {vById.v_id}
-                                                  </div>))}  */}
 
+                                                  &nbsp; {this.state.volunteerById.v_firstName}&nbsp;{this.state.volunteerById.v_lastName}  
 
-                                                   &nbsp; {this.state.volunteerById.v_firstName}&nbsp;{this.state.volunteerById.v_lastName}  
+                                                
+                                              </DialogTitle>
+                                          <DialogContent>
+                                        <DialogContentText className="volunteer_update_delete_grid">
+                                        {/* First name : <TextField  id="standard-basic" variant="standard"  value={this.state.volunteerById.v_firstName}/> Last name : <TextField id="standard-basic"  variant="standard" value={this.state.volunteerById.v_lastName} /> */}
 
-                                             </DialogTitle>
-                                        <DialogContent>
-                                        <DialogContentText id="alert-dialog-slide-description">
-                                        <b>Mobile number : </b>{this.state.volunteerById.v_mobileNumber}&nbsp;&nbsp;&nbsp;<b>City : </b>{this.state.volunteerById.v_city}
-                                            <br /><b>currently in : </b>&nbsp;{this.state.volunteerById.v_address}&nbsp;&nbsp;&nbsp;<b>Age : </b>{this.state.volunteerById.v_age}&nbsp;& counting
+                                        Mobile No : <TextField style={{width:"100%"}}  id="standard-basic" variant="outlined" disabled size="small" name="v_mobileNumber"  value={this.state.volunteerById.v_mobileNumber} onChange={this.handleChange}/>
+                                        City : <TextField  id="standard-basic" variant="outlined" disabled  size="small" name="v_city" value={this.state.volunteerById.v_city} onChange={this.handleChange} /> 
+                                              currently in : <TextField  id="standard-basic" variant="outlined"  size="small" disabled  name="v_address" value={this.state.volunteerById.v_address} onChange={this.handleChange}/> 
+                                                Age : <TextField  id="standard-basic" variant="outlined" size="small"   disabled name="v_age" value={this.state.volunteerById.v_age} onChange={this.handleChange} />
+                                              
                                         </DialogContentText>
                                         </DialogContent>
                                         <DialogActions>
-                                        <Button onClick={this.handleVolunteerModalClose} variant="contained" color="success"> UPDATE</Button>
+                                        <Button onClick={this.handleVolunteerModalClose} variant="contained" color="success" onClick={() => {this.handleVolunteerUpdateModalOpen(); this.handleVolunteerModalClose();  }}> UPDATE</Button>
                                         <Button onClick={this.handleVolunteerModalClose} variant="contained" color="error" onClick={()=>{ this.handleVolunteerModalClose(); this.handleDeleteVolunteerConfirmationOpen();}}> DELETE</Button>
-                                         
+                                        
                                         </DialogActions>
                                     
                                         </Dialog>
 
+                                        {/* </>
+                                              return <div>nothing</div> }} */}
 
 
-                            <Dialog 
-                            open={this.state.deleteVolunteerConfirmationModalOpen}
-                            keepMounted
-                            onClose={this.handleDeleteVolunteerConfirmationClose}
-                            >
-                               <DialogTitle>
-                                You sure you want to delete :   
+
+
+                                <Dialog 
+                                open={this.state.deleteVolunteerConfirmationModalOpen}
+                                keepMounted
+                                aria-describedby="alert-dialog-slide-description"
+
+                                onClose={this.handleVolunteerConfirmationModalClose}
+                                >
+
+
+                                <DialogTitle>
+                                You sure you want to delete <b>{this.state.volunteerById.v_firstName} </b> <br/> {this.state.volunteerById.v_firstName} is a great person!!
                                 </DialogTitle> 
                                   <DialogActions >
                                     <Button variant="contained" color="error" onClick={()=>{this.deleteInactiveVolunteer(this.state.volunteerById.v_id); this.handleVolunteerConfirmationModalClose();}}>YEP DELETE</Button> 
                                     <Button variant="contained" onClick={this.handleVolunteerConfirmationModalClose}>Nope</Button>
-                                    </DialogActions>             
-                            </Dialog>                                                      
-            
-                                    
+                                    </DialogActions>      
+                                            
+                                </Dialog>                                                      
+
+
+                                  
+
+                                <Dialog 
+                                open={this.state.volunteerUpdateModalOpen}
+                                keepMounted
+                                aria-describedby="alert-dialog-slide-description"
+
+                                onClose={this.handleVolunteerUpdateModalClose}
+                                >
+
+
+                                <DialogTitle>
+                                  Update info for {this.state.volunteerById.v_firstName}
+                                </DialogTitle> 
+                                <DialogContent>
+
+                                <DialogContentText className="volunteer_update_delete_grid">
+                                        {/* First name : <TextField  id="standard-basic" variant="standard"  value={this.state.volunteerById.v_firstName}/> Last name : <TextField id="standard-basic"  variant="standard" value={this.state.volunteerById.v_lastName} /> */}
+                                        Current Mobile No :  <span>{this.state.volunteerById.v_mobileNumber} </span>       
+                                        Update Mobile No : <TextField style={{width:"100%"}} id="standard-basic" variant="standard"  name="v_mobileNumber"  size="small" onChange={this.handleChange} />
+                                        Current City :   <span>{this.state.volunteerById.v_city}</span>
+                                        Update City : <TextField  id="standard-basic" variant="standard"   size="small" name="v_city" onChange={(e) => { this.setState({ v_city:e.target.value})}} /> 
+                                        Current Address :<span> {this.state.volunteerById.v_address}</span>
+                                        Update Address : <TextField  id="standard-basic" variant="standard"  size="small"  name ="v_address" onChange={this.handleChange}/> 
+                                              
+                                        </DialogContentText>
+                                        </DialogContent>
+
+                                  <DialogActions >
+                                    <Button variant="contained" color="error" onClick={()=>{this.updateVolunteer(this.state.volunteerById.v_id); this.handleVolunteerUpdateModalClose();}}>update</Button> 
+                                    <Button variant="contained" onClick={this.handleVolunteerUpdateModalClose}>Cancel</Button>
+                                    </DialogActions>      
+                                            
+                                </Dialog>                                                      
+
+
+                                 
+                      
+                        
+                    
 
                              </div> 
 
@@ -300,7 +424,15 @@ export class AdminDatastore extends Component {
 
             </>
         )
-    }
+    
+
+
+
+
+    
+  
+  }
+  
 }
 
 export default AdminDatastore

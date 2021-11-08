@@ -9,7 +9,7 @@
     align-items: flex-start;
     flex-direction:column;
     font-size: 18px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family:  monospace;
     overflow: hidden;
     z-index: 999;
 }
@@ -35,14 +35,18 @@
     width:100%;
     padding:1rem;
     text-align: center;
-    /* background-color: yellow; */
-    /* align-items: center;
-    justify-content: center; */
-    /* padding:12px 20px 12px 20px; */
+    color:#fae6d3;
+    font-weight:normal;
+    font-size: 20px;
+
+
+
 }
 
 .navbar_links li:hover{
-    background-color: #2d76b9;
+    /* background-color: #2d76b9; */
+    background-color:#a55e1b;
+    color:white;
  
 }
 
@@ -63,10 +67,15 @@
 }
 
 
-.navbar_text{
-    color: white !important;
+/* .navbar_text{
     cursor: pointer;
+    color:#ebb27e;
+    padding:10px;
+
 }
+.navbar_text:hover{
+    color:white;
+} */
 
 .navbar_donate{
 
@@ -180,7 +189,8 @@
 
 
     .join_us_modal_title{
-        background-color: rgb(196, 235, 196);
+        background-color: #b9702d;
+        color:white;
     }
 
     .join_us_modal_text{
@@ -264,6 +274,7 @@ display: none;
     justify-content:flex-end;
     align-items: center;
     flex-direction:row;
+
 }
 
 .navbar_logo{
@@ -301,13 +312,18 @@ display: none;
     text-align: center;
     cursor: pointer;
     margin-left: 10px;
+    color:#fae6d3;
+
 }
 
 .navbar_links li:hover{
-    background-color: #2d76b9;
+    background-color: #b9702d;
     border-radius: 4px;
+    color:white !important;
 
 }
+
+
 
 }
     

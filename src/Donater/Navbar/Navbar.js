@@ -18,6 +18,8 @@ import * as Constants from "../../Constants"
 import { NavLink } from "react-router-dom";
 import  {GiHamburgerMenu}  from "react-icons/gi";
 import image from "../../testLogo.JPEG";
+import axios from 'axios';
+
 
 
 
@@ -35,14 +37,21 @@ export class Navbarr extends Component {
             donaterAddress:"",
             donaterCity:"",
             donaterMealQuantity:"",
-            donaterArray:{
-              donaterFirstName:this.donaterFirstName,
-              donaterLastname:this.donaterLastName,
-              donaterMobileNumbere:this.donaterMobileNumber,
-              donaterAddress:this.donaterAddress,
-              donaterCity:this.donaterCity,
-              donaterMealQuantity:this.donaterMealQuantity
-            }
+            v_firstName:"",
+            v_lastName:"",
+            v_age:"",
+            v_mobileNumber:"",
+            v_city:"",
+            v_address:"",
+            // donaterArray:{
+            //   donaterFirstName:this.donaterFirstName,
+            //   donaterLastname:this.donaterLastName,
+            //   donaterMobileNumbere:this.donaterMobileNumber,
+            //   donaterAddress:this.donaterAddress,
+            //   donaterCity:this.donaterCity,
+            //   donaterMealQuantity:this.donaterMealQuantity
+            // }
+
  
 
         };
@@ -99,17 +108,9 @@ export class Navbarr extends Component {
 
     handleDonaterRequest = (e) => {
       e.preventDefault();
-
-      // const donaterArray = [this.state.donaterFirstName , this.state.donaterLastName ,this.state.donaterMobileNumber,
-      //                   this.state.donaterAddress, this.state.donaterCity,this.state.donaterMealQuantity]
-
-
-                        
       this.setState({
         isLoginModalOpen:false,
     }) 
-
-
     const donaterArray = {
       donaterFirstName:this.state.donaterFirstName,
       donaterLastName:this.state.donaterLastName,
@@ -130,6 +131,32 @@ export class Navbarr extends Component {
     }
 
 
+handleJoinUsRequest = (e) => {
+  e.preventDefault();
+
+  this.setState({
+    isJoinUsModalOpen:false,
+  })
+
+  const joinUsArray = {
+    v_firstName:this.state.v_firstName,
+    v_lastName:this.state.v_lastName,
+    v_mobileNumber:this.state.v_mobileNumber,
+    v_age:this.state.v_age,
+    v_address:this.state.v_address,
+    v_city:this.state.v_city
+  }
+
+axios.post(`http://localhost:8080/admin/addVolunteer`,joinUsArray).then(response => {
+  console.log(response.data)
+})
+
+
+
+}
+
+
+
 
     render() {
         return (<>
@@ -147,7 +174,7 @@ export class Navbarr extends Component {
                       <span className= "navbar_home navbar_text" > Home</span>
                     </li></NavLink>
 
-                    <NavLink  to={Constants.ABOUT_US_LINK} style={{ textDecoration: 'none' }} onClick={this.handleHamburgerClick} ><li>
+                    <NavLink  to={Constants.ABOUT_US_LINK} style={{ textDecoration: 'none' , color:"white"}} onClick={this.handleHamburgerClick} ><li>
                       <span  className="navbar_about_us navbar_text">
                       About us</span>
                     </li> </NavLink>
@@ -236,19 +263,19 @@ export class Navbarr extends Component {
           </DialogContentText>
           <DialogContent className="join_us_grid">
 
-          <TextField size="medium" id="outlined-basic" label="first name" variant="outlined" />
-          <TextField size="medium"  id="outlined-basic" label="last name" variant="outlined" />
-          <TextField size="medium"  id="outlined-basic" label="mobile number" variant="outlined" />
-          <TextField size="medium"  id="outlined-basic" label="Age" variant="outlined" />
-          <TextField size="medium"  id="outlined-basic" label="locality" variant="outlined" />
-          <TextField size="medium"  id="outlined-basic" label="city" variant="outlined" />
+          <TextField size="medium" id="outlined-basic" name="v_firstName" value={this.state.v_firstName} onChange={this.handleChange}label="first name" variant="outlined" />
+          <TextField size="medium"  id="outlined-basic" name="v_lastName" value={this.state.v_lastName}  onChange={this.handleChange} label="last name" variant="outlined" />
+          <TextField size="medium"  id="outlined-basic" name="v_mobileNumber" value={this.state.v_mobileNumber}  onChange={this.handleChange} label="mobile number" variant="outlined" />
+          <TextField size="medium"  id="outlined-basic"  name="v_age" value={this.state.v_age} onChange={this.handleChange}  label="Age" variant="outlined" />
+          <TextField size="medium"  id="outlined-basic" name="v_address" value={this.state.v_address}  onChange={this.handleChange} label="locality" variant="outlined" />
+          <TextField size="medium"  id="outlined-basic" name="v_city" value={this.state.v_city}  onChange={this.handleChange}  label="city" variant="outlined" />
 
 
 
 
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" className="join_us_submit_button" onClick={this.handleJoinUsModalClose}>Submit</Button>
+          <Button variant="contained" className="join_us_submit_button" onClick={this.handleJoinUsRequest}>Submit</Button>
         </DialogActions>
       </Dialog>
 

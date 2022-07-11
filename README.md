@@ -11,7 +11,7 @@
 - User can provide information related to the food like meal size,
   phone number, address etc
 - The admin panel will get the information related to the donation 
-- The admin can delete the donation request once it's completed or cancled.
+- The admin can delete the donation request once it's completed or cancelled.
 
 ## Build with 
 - React ( frontend ) 

@@ -13,10 +13,11 @@
   phone number, address etc
 - The admin panel will get the information related to the donation 
 - The admin can delete the donation request once it's completed or cancelled.
+- Also people can volunteer to pickup and deliver the food to needy ones.
 
 ## Build with 
 - React ( frontend ) 
-- SpringBoot ( API ) 
+- SpringBoot ( to write the API ) 
 - MySql local ( database )
 
 
